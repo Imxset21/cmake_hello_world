@@ -5,6 +5,6 @@
 
 using namespace whirlpool;
 
-std::unique_ptr<std::string> get_queue_config(void) {
+std::unique_ptr<std::string> whirlpool::get_queue_config(void) {
   return std::make_unique<std::string>("ayy lmao");
 }

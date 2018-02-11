@@ -11,6 +11,10 @@ set(library_SOURCES
     src/Hello.cpp
 )
 
+set(library_HEADERS
+    include/Hello.h
+)
+
 #Generate the static library from the library sources
 add_library(hello_library STATIC ${library_SOURCES})
 
@@ -36,6 +40,4 @@ set(binary_SOURCES
 add_executable(hello_binary ${binary_SOURCES})
 
 # link the new hello_library target with the hello_binary target
-target_link_libraries( hello_binary
-    PRIVATE hello_library
-)
+target_link_libraries(hello_binary PRIVATE hello_library)
