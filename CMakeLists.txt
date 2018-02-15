@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 project(hello_library)
 
 ############################################################
@@ -38,6 +40,10 @@ set(binary_SOURCES
 
 # Add an executable with the above sources
 add_executable(hello_binary ${binary_SOURCES})
+
+target_include_directories(hello_binary
+    PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
 
 # link the new hello_library target with the hello_binary target
 target_link_libraries(hello_binary PRIVATE hello_library)
