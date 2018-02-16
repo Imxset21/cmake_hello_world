@@ -1,6 +1,7 @@
 [submodule "glog"]
-	path = v0.3.5
+	path = glog
 	url = https://github.com/google/glog
+	branch = v035
 [submodule "gflags"]
 	path = gflags
 	url = https://github.com/gflags/gflags
