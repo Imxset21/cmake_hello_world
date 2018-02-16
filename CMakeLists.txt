@@ -2,48 +2,19 @@ cmake_minimum_required(VERSION 3.5)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-project(hello_library)
+project(hello_library CXX)
 
-############################################################
-# Create a library
-############################################################
+# External dependencies
+add_subdirectory(gflags)
+add_subdirectory(glog)
+add_subdirectory(googletest)
 
-# Source files to be used in the library
-set(library_SOURCES
-    src/Hello.cpp
-)
+# Library files
+add_subdirectory(hello)
 
-set(library_HEADERS
-    include/Hello.h
-)
+# Testing modules
+add_subdirectory(test)
 
-#Generate the static library from the library sources
-add_library(hello_library STATIC ${library_SOURCES})
+enable_testing()
 
-target_compile_features(
-    hello_library PUBLIC cxx_nullptr cxx_return_type_deduction
-)
-
-target_include_directories(hello_library
-    PUBLIC ${PROJECT_SOURCE_DIR}/include
-)
-
-
-############################################################
-# Create an executable
-############################################################
-
-# Source fles for the binary
-set(binary_SOURCES
-    src/main.cpp
-)
-
-# Add an executable with the above sources
-add_executable(hello_binary ${binary_SOURCES})
-
-target_include_directories(hello_binary
-    PUBLIC ${PROJECT_SOURCE_DIR}/include
-)
-
-# link the new hello_library target with the hello_binary target
-target_link_libraries(hello_binary PRIVATE hello_library)
+add_test(NAME HelloTest COMMAND hello_test)
